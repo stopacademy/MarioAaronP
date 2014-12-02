@@ -45,10 +45,10 @@ game.PlayerEntity = me.Entity.extend({
         return true;
     }
     
-    collideHandler: function(){
+    collideHandler: function() {
         
     }
-  
+    
 });
 
 game.LevelTrigger = me.Entity.extend({
