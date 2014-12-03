@@ -32,7 +32,7 @@ game.PlayerEntity = me.Entity.extend({
         me.collision.check(this, true, this.collideHandler.bind(this), true);
         
         if(this.body.vel.x !== 0){
-            if(!this.renderable.setCurrentAnimation("smallWalk")) {
+            if(!this.renderable.isCurrentAnimation("smallWalk")) {
                 this.renderable.setCurrentAnimation("smallWalk");
                 this.renderable.setAnimationFrame();
         }
@@ -43,9 +43,9 @@ game.PlayerEntity = me.Entity.extend({
         
         this._super(me.Entity, "update", [delta]);
         return true;
-    }
+    },
     
-    collideHandler: function() {
+    collideHandler: function(response) {
         
     }
     
