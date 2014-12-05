@@ -1,4 +1,4 @@
-// TODO
+// entities.js
 game.PlayerEntity = me.Entity.extend({
    init: function(x, y, settings){
        this._super(me.Entity, 'init', [x, y, {
@@ -13,16 +13,24 @@ game.PlayerEntity = me.Entity.extend({
        }]);
        
        this.renderable.addAnimation("idle", [3]);
+       //
+       //
+       //the 
        this.renderable.addAnimation("smallWalk", [8, 9, 10, 11, 12, 13], 80);
        
        this.renderable.setCurrentAnimation("idle");
        
        this.body.setVelocity(5, 20);
+       
+       //the camera
        me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
        
    },
     update: function(delta) {
+        //If the right key hits left
         if(me.input.isKeyPressed("right")){
+            //
+            //It uses the time and frames of the animation of the players
             this.body.vel.x += this.body.accel.x * me.timer.tick;
             
         }else{
@@ -37,8 +45,7 @@ game.PlayerEntity = me.Entity.extend({
                 this.renderable.setCurrentAnimation("smallWalk");
                 this.renderable.setAnimationFrame();
         }
-        }else{
-            this.renderable.setCurrentAnimation("idle");
+             this.renderable.setCurrentAnimation("idle");
         }
         
         
@@ -58,12 +65,16 @@ game.LevelTrigger = me.Entity.extend({
         this._super(me.Entity, "init", [x, y, settings]);
         this.body.onCollision = this.onCollision.bind(this);
         this.level = settings.level;
+        this.xSpawn = settings.xSpawn;
+        this.ySpawn = settings.ySpawn;
     },
     
     onCollision: function(){
+        //
+        //
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
         me.levelDirector.loadLevel(this.level);
-        me.state.current().resetPlayer();
+        me.state.current().resetPlayer( this.xSpawn, this.ySpawn);
     }
     
 });
