@@ -13,23 +13,19 @@ game.PlayerEntity = me.Entity.extend({
        }]);
        
        this.renderable.addAnimation("idle", [3]);
-       //
-       //
-       //the 
+       //It takes picturse 8, 9, 10, 11, 12, 13 from the image file of mario and plays an 80 second mile display.
        this.renderable.addAnimation("smallWalk", [8, 9, 10, 11, 12, 13], 80);
        
        this.renderable.setCurrentAnimation("idle");
        
        this.body.setVelocity(5, 20);
        
-       //the camera
+       //It veiws the player even if the mario move left or right.
        me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
        
    },
     update: function(delta) {
-        //If the right key hits left
         if(me.input.isKeyPressed("right")){
-            //
             //It uses the time and frames of the animation of the players
             this.body.vel.x += this.body.accel.x * me.timer.tick;
             
